@@ -1,0 +1,56 @@
+name: spin_better
+description: SpinBetter app.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  http: ^1.1.0
+  logger: ^2.0.2+1
+  beautiful_soup_dart: ^0.3.0
+  provider: ^6.0.5
+  url_launcher: ^6.1.14
+  html: ^0.15.4
+  flutter_html: ^3.0.0-beta.2
+  flutter_svg: ^2.0.7
+  sprintf: ^7.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/banners/banner_top.png
+    - images/banners/banner_bottom.png
+    - images/banners/banner_main.png
+    - images/banners/banner_main_background.png
+
+    - images/icons/active/live_active.svg
+    - images/icons/active/news_active.svg
+    - images/icons/active/pre_match_active.svg
+    - images/icons/active/the_last_active.svg
+
+    - images/icons/inactive/live_inactive.svg
+    - images/icons/inactive/news_inactive.svg
+    - images/icons/inactive/pre_match_inactive.svg
+    - images/icons/inactive/the_last_inactive.svg
+
+    - images/buttons/close_button.png
+
+  fonts:
+    - family: "Roboto"
+      fonts:
+        - asset: fonts/roboto_regular.ttf
