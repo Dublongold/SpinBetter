@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.spinbetter" "\0"
-            VALUE "FileDescription", "spin_better" "\0"
+            VALUE "FileDescription", "Spinbetter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "spin_better" "\0"
+            VALUE "InternalName", "Spinbetter" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.spinbetter. All rights reserved." "\0"
-            VALUE "OriginalFilename", "spin_better.exe" "\0"
-            VALUE "ProductName", "spin_better" "\0"
+            VALUE "OriginalFilename", "Spinbetter.exe" "\0"
+            VALUE "ProductName", "Spinbetter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

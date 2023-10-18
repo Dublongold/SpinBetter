@@ -41,7 +41,8 @@ class _MainScreenState extends State<MainScreen> {
   bool elementsLoaded = false;
   bool needButtons = true;
   bool showBanner = false;
-  CancellationToken? lastCancellationToken;
+  CancellationToken? bannerCancellationToken;
+  CancellationToken? sportEntryCancellationToken;
   String titleText = liveTitleText;
   int selectedSport = 1;
   GlobalKey bannerKey = GlobalKey();
@@ -54,7 +55,7 @@ class _MainScreenState extends State<MainScreen> {
         this.elements = elements;
         elementsLoaded = true;
         CancellationToken cancellationToken = CancellationToken();
-        lastCancellationToken = cancellationToken;
+        bannerCancellationToken = cancellationToken;
         waitSecondsAndShowBanner(defaultWaiting, cancellationToken);
       });
     });
@@ -62,9 +63,12 @@ class _MainScreenState extends State<MainScreen> {
   @override build(BuildContext context) {
     SelectedPage state = context.watch();
     state.onChangedPage ??= (selectedPage) {
+      CancellationToken token = CancellationToken();
       setState(() {
         showBanner = false;
-        lastCancellationToken?.cancel();
+        bannerCancellationToken?.cancel();
+        sportEntryCancellationToken?.cancel();
+        sportEntryCancellationToken = token;
         titleText = switch(selectedPage) {
           0 => liveTitleText,
           1 => preMatchTitleText,
@@ -77,14 +81,17 @@ class _MainScreenState extends State<MainScreen> {
         elementsLoaded = false;
       });
       widget.fetchData(selectedSport, selectedPage).then(
-        (value) =>
-          setState(() {
-            elements = value;
-            elementsLoaded = true;
-            CancellationToken cancellationToken = CancellationToken();
-            lastCancellationToken = cancellationToken;
-            waitSecondsAndShowBanner(defaultWaiting, cancellationToken);
-          })
+        (value) {
+          if (!token.isCancelled()) {
+            setState(() {
+              elements = value;
+              elementsLoaded = true;
+              CancellationToken cancellationToken = CancellationToken();
+              bannerCancellationToken = cancellationToken;
+              waitSecondsAndShowBanner(defaultWaiting, cancellationToken);
+            });
+          }
+        }
       );
     };
     int ec = MediaQuery.of(context).size.width ~/ 350;
