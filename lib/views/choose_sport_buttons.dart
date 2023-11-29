@@ -23,6 +23,7 @@ class _ChooseSportButtonsState extends State<ChooseSportButtons> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       decoration: BoxDecoration(
         color: inactive,
         borderRadius: const BorderRadius.all(Radius.circular(8))
